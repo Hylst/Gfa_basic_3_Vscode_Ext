@@ -1,0 +1,44 @@
+{
+  "name": "gfa-basic-syntax",
+  "displayName": "GFA Basic 3.5 pour Atari",
+  "description": "Syntax highlighting for GFA BASIC 3.5 on Atari ST.",
+  "version": "1.0.0",
+  "publisher": "Hylst",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hylst/Gfa_basic_3_Vscode_Ext"
+  },
+  "homepage": "https://github.com/Hylst/Gfa_basic_3_Vscode_Ext",
+  "bugs": {
+    "url": "https://github.com/Hylst/Gfa_basic_3_Vscode_Ext/issues"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "contributes": {
+    "languages": [{
+      "id": "gfabasic",
+      "aliases": ["GFA BASIC", "gfabasic"],
+      "extensions": [".lst", ".gfa"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "gfabasic",
+      "scopeName": "source.gfabasic",
+      "path": "./syntaxes/gfabasic.tmLanguage.json"
+    }]
+  },
+  "icons": {
+    "icon": "https://raw.githubusercontent.com/Hylst/Gfa_basic_3_Vscode_Ext/main/images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_ICO.png"
+  },
+  "files": [
+    "images/",
+    "syntaxes/",
+    "language-configuration.json",
+    "package.json"
+  ]
+}

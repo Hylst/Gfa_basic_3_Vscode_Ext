@@ -1,0 +1,3 @@
+DIM array&()
+PRINT "test"
+
