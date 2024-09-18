@@ -1,14 +1,14 @@
 # GFA BASIC 3.6 Syntax Highlighting for Atari ST - Beta Version -
-![GFA BASIC Syntax Highlighting Icon](https://github.com/Hylst/Gfa_basic_3_Vscode_Ext/blob/main/hylst.gfa-basic-syntax-1.0.0/images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_ICO.jpg?raw=true)
-![GFA BASIC Syntax Highlighting Screenshot](https://github.com/Hylst/Gfa_basic_3_Vscode_Ext/blob/main/hylst.gfa-basic-syntax-1.0.0/images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_SCREENSHOT.jpg)
+![GFA BASIC Syntax Highlighting Icon](images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_ICO.png)
+![GFA BASIC Syntax Highlighting Screenshot](images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_SCREENSHOT.jpg)
 
 ## Description
 This Visual Studio Code extension provides syntax highlighting, auto-indentation, and basic code assistance for the GFA BASIC 3.6 programming language, primarily used on Atari ST systems. While still in beta, the extension will evolve with contributions and feedback from the community, especially if you have experience with developing VS Code extensions. It's free to share, use, or modify on your side as we usually code, in these days, on ATARI ST for fun, nostalgy, personnal challenge, and retro passion.
-For GFA BASIC coders on atari, the best is to use the excellent GBE by Lonny Pursell (powerful ATARI needed such as Falcon 030 + MiNT). Specially for GEM friendly GFA BASIC coding. 
+For GFA BASIC coders on atari, the best is to use the excellent GBE by Lonny Pursell (powerful ATARI needed such as Falcon 030 + MiNT). Specially for GEM friendly GFA BASIC coding. [GBE](https://gfabasic.net/htm/gbe_faq.htm)
 GFA Basic author was Frank Ostrowski. More infos on :  [Frank Ostrowski](https://gfabasic.net/htm/gfa_fo.htm)
 
 The source code of this GFA VSCode extension is available at:
-[GFA BASIC Syntax Highlighting VSCode Extension GitHub Repository](https://github.com/Hylst/Gfa_basic_3_Vscode_Ext/tree/main/gfa-basic-3-6-)
+[GFA BASIC Syntax Highlighting VSCode Extension GitHub Repository](https://github.com/Hylst/Gfa_basic_3_Vscode_Ext/tree/main/hylst.gfa-basic-syntax-1.0.0)
 
 ### Features:
 - **Syntax Highlighting**: Supports GFA BASIC 3.6 keywords, operators, variable types (`$`, `&`, `%`, `!`, `|`), and comments.
@@ -32,7 +32,7 @@ To install this extension, open the Visual Studio Code Marketplace and search fo
 No external dependencies are required. Just install the extension, and start coding in GFA BASIC!
 
 ### Screenshots
-![Syntax Highlighting](https://raw.githubusercontent.com/Hylst/Gfa_basic_3_Vscode_Ext/main/images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_SCREENSHOT.jpg)
+![Syntax Highlighting](images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_SCREENSHOT.jpg)
 
 ## Release Notes
 Beta version.

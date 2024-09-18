@@ -43,7 +43,7 @@
 		]
 	},
 	"icons": {
-		"icon": "https://raw.githubusercontent.com/Hylst/Gfa_basic_3_Vscode_Ext/main/images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_ICO.png"
+		"icon": "images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_ICO.png"
 	},
 	"files": [
 		"images/",
