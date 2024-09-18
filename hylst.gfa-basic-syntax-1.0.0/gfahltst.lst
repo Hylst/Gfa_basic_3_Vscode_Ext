@@ -1,0 +1,267 @@
+' Test programs - snippets -  in GFA BASIC 3.6 for Atari ST
+' to show GFA BASIC 3 visual studio code HighLighting efficiency
+'
+' Set Variables
+a=123.456    ! float
+b&=256       ! 16 bits int
+c!=TRUE      ! Booléen
+nom$="Atari ST"  ! String
+palette%=&HFFFF8240  ! 32 bit int    &H Hexadecimal
+'
+' FOR loop
+FOR i|=1 TO 10
+  PRINT "Boucle FOR : ";i|  ! i| 8 bit int
+NEXT i|
+'
+' WHILE Loop
+WHILE b&>10
+  b&=SHR(b&,1)  ! Utilisation de SHR
+  PRINT "Boucle WHILE : ";b&
+WEND
+' REPEAT loop
+REPEAT
+  a=a/2
+  PRINT "Boucle REPEAT : ";a;" ";RAND(10)
+UNTIL a<1
+'
+' IF Conditionnal block
+IF c!
+  PRINT "Condition IF : Vrai"
+ELSE IF NOT c!
+  PRINT "Condition IF : Faux"
+ELSE
+  PRINT "Should not occur (c! is boolean)"
+ENDIF
+'
+' SELECT CASE conditinnal block
+INPUT "(Y)es or (N)o ?",in$
+SELECT in$
+CASE "Y"
+  PRINT "Y for YES"
+CASE "N"
+  PRINT "N for NO"
+DEFAULT
+  PRINT "Default Case"
+ENDSELECT
+' Binary shifts
+d&=SHR(b&,1)
+e&=SHL(c|,2)
+'
+' Use of DATA, RESTORE & READ
+RESTORE donnees
+FOR i%=1 TO 5
+  READ val%
+  PRINT "Valeur lue : ";val%
+NEXT i%
+'
+' Function call
+PRINT "Triange area ";@triangle_area(122,38)
+'
+' Procedure call
+GOSUB affiche_texte("VSCODE GFA Test")
+'
+' 2 dimension array
+DIM tab&(5,7)
+' Array use
+FOR x&=0 TO 4
+  FOR y&=0 TO 6
+    tableau&(x&,y&)=x&*y&
+  NEXT y&
+NEXT x&
+'
+' Graphics
+SETCOLOR 0,1,3,6
+VSETCOLOR 2,3,3,7
+COLOR 2 ! DRAWING COLOR
+DEFFILL 3 ! FILLING COLOR
+BOX 50,50,200,100  ! box
+RBOX 250,50,400,100  ! rounded box
+PBOX 50,150,200,200  ! filled box
+PRBOX 250,150,400,200  ! filled rounded box
+CIRCLE 30,40,20  ! circle
+PCIRCLE 100,300,50  ! filled circle
+PELLIPSE 160,100,30,15  ! filled ellipse
+ELLIPSE 60,150,30,15  ! filled ellipse
+CURVE 0,0,50,70,100,60,150,180 ! Bezier curve
+~INP(2) ! Wait key
+CLS
+VSYNC
+'
+' LINE a
+ym%=INT{L~A-4}-1
+FOR i%=0 TO 255
+  style%=256*i%+i%
+  ALINE i%,0,i%,ym%,1,style%,0
+NEXT i%
+ACLIP 1,0,0,639,399
+'
+pattern%=&X11111111111111111010101010101010
+x%=V:pattern%
+'
+FOR i%=0 TO 199
+  HLINE 0,i%,639,1,0,x%,1
+NEXT i%
+ACLIP 1,0,0,639,399
+DIM pattern&(1)
+'
+pattern&(0)=-21846
+pattern&(1)=21845
+'
+pattern_adr%=V:pattern&(0)
+ARECT 100,100,200,200,1,0,pattern_adr%,1
+'
+PSET 100,100,6
+x=PTST(200,100)
+PRINT x,PTST(100,100)
+'
+DIM x&(9),pattern&(1)
+FOR i%=0 TO 7
+  x&(i%)=RAND(100)
+NEXT i%
+x&(8)=x&(0)
+x&(9)=x&(1)
+'
+adr_corners%=V:x&(0)
+pattern&(0)=-1
+adr_pattern%=V:pattern&(0)
+'
+ACLIP 1,0,0,200,200
+APOLY adr_corners%,4,0 TO 100,1,1,adr_pattern%,0
+OPENW 0                    !Protect the top line from overwriting
+EVERY 400 GOSUB a_clock    !Every 2 seconds call a_clock
+FOR i%=1 TO 100000
+  PRINT USING "######",i%; !Display numbers
+NEXT i%
+'
+PROCEDURE a_clock
+  ACLIP 1,20,0,120,15      !Switch clipping on,
+  ATEXT 20,20,2,TIME$      !Display the time
+RETURN
+SOUND
+SOUND 3,15,8,4,20
+WAVE 7,7,0,65535,300
+n%=360*32
+DIM a|(n%)
+DMASOUND V:a|(0),V:a|(n%),3,3
+FOR i%=0 TO n%
+  a|(i%)=128+SINQ(i%*i%/7200)*127
+NEXT i%
+REPEAT
+UNTIL MOUSEK
+DMACONTROL 0
+MW_OUT &H7FF,&X10000000010 !Switches the ST's sound off
+'
+' VAR
+sum(13,12,a)
+sum(7,9,b)
+PRINT a,b
+PROCEDURE sum(x,y,VAR z)
+  z=x+y
+RETURN
+'
+' DEFFN
+DEFFN test(y,a$)=x-y+LEN(a$)
+x=2
+PRINT @test(4,"abcdef")
+' Comments
+REM comment
+' PRINT "comment"
+PRINT "REM" ! comment
+'
+' Goto
+PRINT "place 1"
+GOTO jump_point
+PRINT "place 2"
+jump_point:
+PRINT "place 3"
+'
+' TIME
+PRINT "start"
+PAUSE 100
+PRINT "a pause"
+DELAY 2
+PRINT "end"
+'
+' Interrupts
+EVERY 4 GOSUB lines
+lines!=TRUE
+GRAPHMODE 3
+DEFFILL 1
+PLOT MOUSEX,MOUSEY
+REPEAT
+  IF MOUSEK=1
+    EVERY STOP
+  ELSE
+    EVERY  CONT
+  ENDIF
+  DRAW  TO MOUSEX,MOUSEY
+UNTIL MOUSEK=2
+'
+PROCEDURE lines
+  INC y%
+  LINE 320,y%,639,y%
+  IF y%=399
+    y%=0
+  ENDIF
+RETURN
+'
+' Mark
+CLEAR
+DIM x%(1),y%(1)
+x%(0)=50
+y%(0)=50
+x%(1)=150
+y%(1)=150
+DEFMARK 1,4,2
+POLYMARK 2,x%(),y%()
+DEFMARK ,3,4
+POLYMARK 2,x%(),y%() OFFSET 100,0
+'
+' Mouse
+DEFMOUSE 2
+DELAY 1
+m$=MKI$(0)+MKI$(0)+MKI$(1)+MKI$(0)+MKI$(1)
+FOR i%=1 TO 16
+  m$=m$+MKI$(65535)
+NEXT i%
+FOR i%=1 TO 16
+  m$=m$+MKI$(1)
+NEXT i%
+PBOX 200,150,400,250
+DEFMOUSE m$
+REPEAT
+UNTIL MOUSEK
+'
+' Program tracing
+TRON tr_proc
+GRAPHMODE 3
+DO UNTIL MOUSEK
+  x1%=100+RAND(200)
+  y1%=100+RAND(100)
+  x2%=200+RAND(200)
+  y2%=200+RAND(100)
+  PBOX xl%,y1%,x2%,y2%
+LOOP
+'
+PROCEDURE tr_proc
+  IF BIOS(11,-1) AND 4 ! Control key
+    adr%=XBIOS(2)
+    BMOVE adr%+1280,adr%,4*1280
+    PRINT AT(1,5);SPACE$(80);
+    PRINT AT(1,5);LEFT$(TRACE$,79);
+    PAUSE 20
+  ENDIF
+RETURN
+'
+' PROCEDURE bloc
+PROCEDURE affiche_texte(var$)
+  compteur&=LEN(var$)
+  PRINT "Texte : ";var$,"Longueur : ";compteur&
+RETURN
+'
+FUNCTION triangle_area(base&,hauteur&)
+  RETURN base*hauteur/2
+ENDFUNC
+donnees:
+DATA 1,8,45,37,22
+'
