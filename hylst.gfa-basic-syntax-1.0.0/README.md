@@ -1,6 +1,6 @@
 # GFA BASIC 3.6 Syntax Highlighting for Atari ST - Beta Version -
-![GFA BASIC Syntax Highlighting Icon](https://raw.githubusercontent.com/Hylst/Gfa_basic_3_Vscode_Ext/main/images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_ICO.png)
-![GFA BASIC Syntax Highlighting Screenshot](https://raw.githubusercontent.com/Hylst/Gfa_basic_3_Vscode_Ext/main/images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_SCREENSHOT.jpg)
+![GFA BASIC Syntax Highlighting Icon](hylst.gfa-basic-syntax-1.0.0/images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_ICO.png)
+![GFA BASIC Syntax Highlighting Screenshot](https://github.com/Hylst/Gfa_basic_3_Vscode_Ext/blob/main/hylst.gfa-basic-syntax-1.0.0/images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_SCREENSHOT.jpg)
 
 ## Description
 This Visual Studio Code extension provides syntax highlighting, auto-indentation, and basic code assistance for the GFA BASIC 3.6 programming language, primarily used on Atari ST systems. While still in beta, the extension will evolve with contributions and feedback from the community, especially if you have experience with developing VS Code extensions. It's free to share, use, or modify on your side as we usually code, in these days, on ATARI ST for fun, nostalgy, personnal challenge, and retro passion.
