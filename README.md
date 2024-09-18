@@ -27,7 +27,7 @@ This extension aims to improve productivity and code readability for developers 
 For a full list of instructions, refer to the [GFA BASIC reference](https://gfabasic.net/stg/gfabasic.htm). Many still lacks in this extension.
 
 ### Installation
-To install this extension, open the Visual Studio Code Marketplace and search for "GFA BASIC Syntax" by 'Hylst', then click install. Or you can install it manually from the .vsix you can find on my GitHub link below. 
+To install this extension, open the Visual Studio Code Marketplace and search for "GFA BASIC Syntax" by 'Hylst', then click install. Or you can install it manually from the .vsix you can find on my GitHub [link](https://github.com/Hylst/Gfa_basic_3_Vscode_Ext/blob/main/gfa-basic-syntax-1.0.0.vsix). 
 
 ### Requirements
 No external dependencies are required. Just install the extension, and start coding in GFA BASIC!
