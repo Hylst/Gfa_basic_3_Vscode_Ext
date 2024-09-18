@@ -1,5 +1,5 @@
 # GFA BASIC 3.6 Syntax Highlighting for Atari ST - Beta Version -
-![GFA BASIC Syntax Highlighting Icon]([hylst.gfa-basic-syntax-1.0.0/images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_ICO.png](https://github.com/Hylst/Gfa_basic_3_Vscode_Ext/blob/main/hylst.gfa-basic-syntax-1.0.0/images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_ICO.png))
+![GFA BASIC Syntax Highlighting Icon](https://github.com/Hylst/Gfa_basic_3_Vscode_Ext/blob/main/hylst.gfa-basic-syntax-1.0.0/images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_ICO.jpg?raw=true)
 ![GFA BASIC Syntax Highlighting Screenshot](https://github.com/Hylst/Gfa_basic_3_Vscode_Ext/blob/main/hylst.gfa-basic-syntax-1.0.0/images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_SCREENSHOT.jpg)
 
 ## Description
