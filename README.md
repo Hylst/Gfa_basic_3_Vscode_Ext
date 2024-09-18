@@ -4,7 +4,8 @@
 
 ## Description
 This Visual Studio Code extension provides syntax highlighting, auto-indentation, and basic code assistance for the GFA BASIC 3.6 programming language, primarily used on Atari ST systems. While still in beta, the extension will evolve with contributions and feedback from the community, especially if you have experience with developing VS Code extensions. It's free to share, use, or modify on your side as we usually code, in these days, on ATARI ST for fun, nostalgy, personnal challenge, and retro passion.
-For GFA BASIC coders on atari, the best is to use the excellent GBE by Lonny Pursell (powerful ATARI needed such as Falcon 030 + MiNT). Specially for GEM friendly GFA BASIC coding. 
+For GFA BASIC coders on atari, the best is to use the excellent GBE by Lonny Pursell (powerful ATARI needed such as Falcon 030 + MiNT). Specially for GEM friendly GFA BASIC coding.
+Specially for GEM friendly GFA BASIC coding. [GBE](https://gfabasic.net/htm/gbe_faq.htm)
 GFA Basic author was Frank Ostrowski. More infos on :  [Frank Ostrowski](https://gfabasic.net/htm/gfa_fo.htm)
 
 The source code of this GFA VSCode extension is available at:
