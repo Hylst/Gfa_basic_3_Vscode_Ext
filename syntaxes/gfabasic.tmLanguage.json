@@ -1,0 +1,265 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "GFA BASIC 3.6",
+	"patterns": [
+		{ "include": "#comments" },
+		{ "include": "#strings" },
+		{ "include": "#numbers" },
+		{ "include": "#variables" },
+		{ "include": "#control_flow" },
+		{ "include": "#procedures_functions" },
+		{ "include": "#graphics_instructions" },
+		{ "include": "#system_instructions" },
+		{ "include": "#io_instructions" },
+		{ "include": "#memory_instructions" },
+		{ "include": "#math_instructions" },
+		{ "include": "#string_instructions" },
+		{ "include": "#array_instructions" },
+		{ "include": "#mouse_joystick_instructions" },
+		{ "include": "#sound_instructions" },
+		{ "include": "#matrix_instructions" },
+		{ "include": "#aes_vdi_instructions" },
+		{ "include": "#compiler_directives" },
+		{ "include": "#operators" },
+		{ "include": "#constants" },
+		{ "include": "#labels" }
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.exclamation.gfabasic",
+					"match": "!.*$"
+				},
+				{
+					"name": "comment.line.apostrophe.gfabasic",
+					"match": "^\\s*'.*$"
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"name": "string.quoted.double.gfabasic",
+					"begin": "\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"name": "constant.character.escape.gfabasic",
+							"match": "\\\\."
+						}
+					]
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.hexadecimal.gfabasic",
+					"match": "\\b&H[0-9A-Fa-f]+\\b"
+				},
+				{
+					"name": "constant.numeric.binary.gfabasic",
+					"match": "\\b&X[01]+\\b"
+				},
+				{
+					"name": "constant.numeric.float.gfabasic",
+					"match": "\\b\\d+\\.\\d+([eE][+-]?\\d+)?\\b"
+				},
+				{
+					"name": "constant.numeric.integer.gfabasic",
+					"match": "\\b\\d+\\b"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"name": "variable.other.string.gfabasic",
+					"match": "\\b[A-Za-z_][A-Za-z0-9_]*\\$\\b"
+				},
+				{
+					"name": "variable.other.integer32.gfabasic",
+					"match": "\\b[A-Za-z_][A-Za-z0-9_]*%\\b"
+				},
+				{
+					"name": "variable.other.integer16.gfabasic",
+					"match": "\\b[A-Za-z_][A-Za-z0-9_]*&\\b"
+				},
+				{
+					"name": "variable.other.integer8.gfabasic",
+					"match": "\\b[A-Za-z_][A-Za-z0-9_]*\\|\\b"
+				},
+				{
+					"name": "variable.other.boolean.gfabasic",
+					"match": "\\b[A-Za-z_][A-Za-z0-9_]*!\\b"
+				},
+				{
+					"name": "variable.other.float.gfabasic",
+					"match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b(?![\\$%&\\|!])"
+				}
+			]
+		},
+		"control_flow": {
+			"patterns": [
+				{
+					"name": "keyword.control.gfabasic",
+					"match": "\\b(?i)(IF|ELSE|ENDIF|ELSEIF|FOR|NEXT|WHILE|WEND|REPEAT|UNTIL|DO|LOOP|SELECT|CASE|DEFAULT|ENDSELECT|GOTO|GOSUB|RETURN|EXIT|BREAK|CONT|ON|ERROR|EVERY|AFTER|CHAIN|EXEC|RUN|STOP|END|QUIT|PAUSE|DELAY)\\b"
+				}
+			]
+		},
+		"procedures_functions": {
+			"patterns": [
+				{
+					"name": "keyword.control.procedure.gfabasic",
+					"match": "\\b(?i)(PROCEDURE|FUNCTION|RETURN|ENDFUNC|ENDPROC|LOCAL|CALL)\\b"
+				}
+			]
+		},
+		"graphics_instructions": {
+			"patterns": [
+				{
+					"name": "keyword.other.graphics.gfabasic",
+					"match": "\\b(?i)(PLOT|PSET|PGET|POINT|LINE|BOX|PBOX|CIRCLE|PCIRCLE|ELLIPSE|PELLIPSE|ARC|PARC|FILL|PAINT|GET|PUT|CLIP|DEFLINE|DEFFILL|DEFMARK|DEFTEXT|TEXT|GRAPHMODE|CLEARW|CLS|COLOR|SETCOLOR|VSETCOLOR|PALETTE|BITBLT|RASTER|SPRITE|BMOVE|SGET|SPUT|VSYNC|DRAW|MOVE|POLYLINE|POLYGON|POLYMARK|POLYFILL|CURVE|RBOX|PRBOX|BAR|PBAR|SCROLL|ZOOM|ROTATE|MIRROR|FLIP|SCREEN|ALINE|ARECT|ATEXT|ACHAR|ACLIP|APOLY|BOUNDARY|HLINE|VLINE|SETSCREEN|GETREZ|PHYSBASE|LOGBASE|DEFSPRITE|HARDCOPY|INVERT|GREY|DIMMER)\\b"
+				}
+			]
+		},
+		"system_instructions": {
+			"patterns": [
+				{
+					"name": "keyword.other.system.gfabasic",
+					"match": "\\b(?i)(BIOS|XBIOS|GEMDOS|TRAP|SYSTEM|EXEC|CHAIN|RUN|LOAD|SAVE|MERGE|NEW|CLEAR|RESET|QUIT|END|STOP|PAUSE|WAIT|TIMER|TIME|DATE|RANDOMIZE|RND|SEED|RESERVE|MALLOC|MFREE|HIMEM|VARPTR|SADD|PEEK|POKE|DPEEK|DPOKE|LPEEK|LPOKE|SWAP|BMOVE|FILL|ARRAYFILL|SORT|QSORT|SSORT|SOUND|WAVE|BEEP|KBSHIFT|CURSCONF|SETTIME|SETDATE|GETTIME|GETDATE|SUPEXEC|PTERMRES|PTERM|MSHRINK|MXALLOC|FOPEN|FCLOSE|FREAD|FWRITE|FSEEK|FCREATE|FDELETE|FRENAME|FATTRIB|FDUP|FFORCE|DGETDRV|DSETDRV|DGETPATH|DSETPATH|DCREATE|DDELETE|DFREE|SREALLOC|BASEPAGE|SPOKE|DSPOKE|LSPOKE|CLR|VOID|ABSOLUTE|INLINE|RCOPY)\\b"
+				}
+			]
+		},
+		"io_instructions": {
+			"patterns": [
+				{
+					"name": "support.function.io.gfabasic",
+					"match": "\\b(?i)(INPUT|PRINT|LPRINT|READ|DATA|RESTORE|OPEN|CLOSE|LOAD|SAVE|MERGE|BLOAD|BSAVE|CHAIN|RUN|LIST|LLIST|NEW|EDIT|DELETE|RENUM|AUTO|CONT|CLEAR|FILES|DIR|TYPE|COPY|RENAME|KILL|MKDIR|RMDIR|CHDIR|DRIVE|PATH|FILESELECT|ALERT|INP|OUT|BGET|BPUT|EOF|LOF|LOC|SEEK|POINT|FIELD|GET|PUT|RECORD|RANDOM|SEQUENTIAL|APPEND|BINARY|ACCESS|LOCK|UNLOCK|FLUSH|FREEFILE|INKEY|KEYPRESS|KEYGET|KEYLOOK|KEYTEST|INPMID|INPAUX|OUTMID|OUTAUX|HARDCOPY|LPOS|LLEN|WIDTH|TAB|SPC|USING|LOCATE|CSRLIN|POS|SCREEN|EXIST|TOUCH|NAME|FSFIRST|FSNEXT)\\b"
+				}
+			]
+		},
+		"memory_instructions": {
+			"patterns": [
+				{
+					"name": "support.function.memory.gfabasic",
+					"match": "\\b(?i)(PEEK|POKE|DPEEK|DPOKE|LPEEK|LPOKE|VARPTR|SADD|MALLOC|MFREE|RESERVE|FRE|HIMEM|LOMEM|CLEAR|ERASE|SWAP|FILL|MOVE|COPY|COMPARE|SEARCH|SORT|REVERSE|BMOVE|RCOPY|INLINE|SPOKE|DSPOKE|LSPOKE|CLR|VOID|ALLOC|REALLOC|CALLOC|MEMSET|MEMCPY|MEMMOVE|MEMCMP|MEMCHR|STRPTR|ARRPTR|ABSOLUTE)\\b"
+				}
+			]
+		},
+		"math_instructions": {
+			"patterns": [
+				{
+					"name": "keyword.other.math.gfabasic",
+					"match": "\\b(?i)(ABS|SGN|INT|FIX|FRAC|ROUND|TRUNC|SQR|EXP|LOG|LOG10|SIN|COS|TAN|ASIN|ACOS|ATN|ATN2|SINH|COSH|TANH|DEG|RAD|PI|MIN|MAX|MOD|DIV|RANDOM|RND|SEED|CINT|CLNG|CDBL|CSNG|CVS|CVD|CVL|CVI|MKS|MKD|MKL|MKI|ODD|EVEN|PRED|SUCC|FACT)\\b"
+				}
+			]
+		},
+		"string_instructions": {
+			"patterns": [
+				{
+					"name": "keyword.other.string.gfabasic",
+					"match": "\\b(?i)(LEN|LEFT\\$|RIGHT\\$|MID\\$|INSTR|CHR\\$|ASC|STR\\$|VAL|UPPER\\$|LOWER\\$|LTRIM\\$|RTRIM\\$|TRIM\\$|SPACE\\$|STRING\\$|LSET|RSET|FORMAT\\$|PRINT|USING|HEX\\$|OCT\\$|BIN\\$|REVERSE\\$|REPLACE\\$|INSERT\\$|DELETE\\$|CONCAT\\$|COMPARE|MATCH|SEARCH|FIND|LOCATE|SUBSTR\\$|SUBSTRING\\$|STRSTR|STRCHR|STRRCHR|STRCMP|STRCPY|STRCAT|STRLEN|STRDUP|STRLWR|STRUPR|STRREV|STRSET|STRNSET|STRSPN|STRCSPN|STRPBRK|STRTOK)\\b"
+				}
+			]
+		},
+		"array_instructions": {
+			"patterns": [
+				{
+					"name": "support.function.array.gfabasic",
+					"match": "\\b(?i)(DIM|REDIM|ERASE|LBOUND|UBOUND|ARRAYSIZE|SORT|QSORT|SSORT|REVERSE|SEARCH|FILL|COPY|MOVE|COMPARE|ARRAYFILL|ARRPTR|VARPTR|SADD|STRPTR|DEFWRD|DEFINT|DEFSTR|DEFBYT|DEFBOOL|LOCAL|GLOBAL|STATIC|SHARED)\\b"
+				}
+			]
+		},
+		"mouse_joystick_instructions": {
+			"patterns": [
+				{
+					"name": "support.function.input.gfabasic",
+					"match": "\\b(?i)(MOUSE|MOUSEX|MOUSEY|MOUSEK|MOUSEB|SETMOUSE|DEFMOUSE|HIDEM|SHOWM|STICK|STRIG|PADDLE|PTRIG|INKEY|KEYPRESS|KEYGET|KEYLOOK|KEYTEST|KEYDEF|KBSHIFT)\\b"
+				}
+			]
+		},
+		"sound_instructions": {
+			"patterns": [
+				{
+					"name": "keyword.other.sound.gfabasic",
+					"match": "\\b(?i)(SOUND|WAVE|BEEP|DMASOUND|DMACONTROL|DOSOUND|SETBUFFER|BUFFOPER|SOUNDCMD|DEVCONNECT|SNDSTATUS|BUFFPTR|DSPTRISTATE|LOCKSND|UNLOCKSND|SETMODE|SETTRACK|SETTRACKS|SETMONTRACKS|SETINTERRUPT|BUFFOPER|XBTIMER|JDISINT|JENABINT|GIACCESS|OFFGIBIT|ONGIBIT|SETPRT|FLOPPRD|FLOPPWR|FLOPFMT|MIDIWS|MFPINT|IOREC)\\b"
+				}
+			]
+		},
+		"matrix_instructions": {
+			"patterns": [
+				{
+					"name": "keyword.other.matrix.gfabasic",
+					"match": "\\b(?i)(MAT|ADD|SUB|MUL|NORM|DET|QDET|RANG|INV|TRANSPOSE|IDENTITY|ZERO|COPY|FILL|PRINT|INPUT|READ|DATA|RESTORE)\\b"
+				}
+			]
+		},
+		"aes_vdi_instructions": {
+			"patterns": [
+				{
+					"name": "support.function.aes.gfabasic",
+					"match": "\\b(?i)(AES|VDI|GEM|GEMSYS|VDISYS|RC_COPY|RC_INTERSECT|RC_EQUAL|GRAF_HANDLE|GRAF_MOUSE|GRAF_MKSTATE|WIND_CREATE|WIND_OPEN|WIND_CLOSE|WIND_DELETE|WIND_GET|WIND_SET|WIND_FIND|WIND_UPDATE|WIND_CALC|WIND_NEW|FORM_DO|FORM_DIAL|FORM_ALERT|FORM_ERROR|FORM_CENTER|FORM_KEYBD|FORM_BUTTON|MENU_BAR|MENU_ICHECK|MENU_IENABLE|MENU_TNORMAL|MENU_TEXT|MENU_REGISTER|OBJC_ADD|OBJC_DELETE|OBJC_DRAW|OBJC_FIND|OBJC_OFFSET|OBJC_ORDER|OBJC_EDIT|OBJC_CHANGE|RSRC_LOAD|RSRC_FREE|RSRC_GADDR|RSRC_SADDR|RSRC_OBFIX|SCRP_READ|SCRP_WRITE|FSEL_INPUT|FSEL_EXINPUT|SHEL_READ|SHEL_WRITE|SHEL_GET|SHEL_PUT|SHEL_FIND|SHEL_ENVRN|APPL_INIT|APPL_READ|APPL_WRITE|APPL_FIND|APPL_TPLAY|APPL_TRECORD|APPL_EXIT|EVNT_KEYBD|EVNT_BUTTON|EVNT_MOUSE|EVNT_MESAG|EVNT_TIMER|EVNT_MULTI|EVNT_DCLICK)\\b"
+				}
+			]
+		},
+		"compiler_directives": {
+			"patterns": [
+				{
+					"name": "meta.preprocessor.gfabasic",
+					"match": "\\$[A-Za-z]+[+-]?"
+				},
+				{
+					"name": "keyword.control.inline.gfabasic",
+					"match": "\\b(?i)(INLINE|~|@)\\b"
+				}
+			]
+		},
+		"operators": {
+			"patterns": [
+				{
+					"name": "keyword.operator.arithmetic.gfabasic",
+					"match": "[+\\-*/\\\\^%]"
+				},
+				{
+					"name": "keyword.operator.comparison.gfabasic",
+					"match": "(=|<>|<|<=|>|>=)"
+				},
+				{
+					"name": "keyword.operator.logical.gfabasic",
+					"match": "\\b(?i)(AND|OR|XOR|NOT|EQV|IMP)\\b"
+				},
+				{
+					"name": "keyword.operator.bitwise.gfabasic",
+					"match": "\\b(?i)(BTST|BSET|BCLR|BCHG|SHL|SHR|ROL|ROR)\\b"
+				},
+				{
+					"name": "keyword.operator.assignment.gfabasic",
+					"match": "="
+				},
+				{
+					"name": "keyword.operator.memory.gfabasic",
+					"match": "[{}@~]"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"name": "constant.language.boolean.gfabasic",
+					"match": "\\b(?i)(TRUE|FALSE)\\b"
+				}
+			]
+		},
+		"labels": {
+			"patterns": [
+				{
+					"name": "entity.name.label.gfabasic",
+					"match": "^\\s*[A-Za-z_][A-Za-z0-9_]*:"
+				}
+			]
+		}
+	},
+	"scopeName": "source.gfabasic"
+}

@@ -1,0 +1,389 @@
+{
+	"FOR Loop": {
+		"prefix": "for",
+		"body": [
+			"FOR ${1:i} = ${2:1} TO ${3:10}",
+			"\t$0",
+			"NEXT ${1:i}"
+		],
+		"description": "FOR loop with counter"
+	},
+	"FOR Loop with STEP": {
+		"prefix": "forstep",
+		"body": [
+			"FOR ${1:i} = ${2:1} TO ${3:10} STEP ${4:1}",
+			"\t$0",
+			"NEXT ${1:i}"
+		],
+		"description": "FOR loop with STEP"
+	},
+	"WHILE Loop": {
+		"prefix": "while",
+		"body": [
+			"WHILE ${1:condition}",
+			"\t$0",
+			"WEND"
+		],
+		"description": "WHILE loop"
+	},
+	"REPEAT Loop": {
+		"prefix": "repeat",
+		"body": [
+			"REPEAT",
+			"\t$0",
+			"UNTIL ${1:condition}"
+		],
+		"description": "REPEAT UNTIL loop"
+	},
+	"DO Loop": {
+		"prefix": "do",
+		"body": [
+			"DO",
+			"\t$0",
+			"LOOP"
+		],
+		"description": "DO LOOP"
+	},
+	"IF Statement": {
+		"prefix": "if",
+		"body": [
+			"IF ${1:condition}",
+			"\t$0",
+			"ENDIF"
+		],
+		"description": "IF conditional block"
+	},
+	"IF ELSE Statement": {
+		"prefix": "ifelse",
+		"body": [
+			"IF ${1:condition}",
+			"\t${2:! true block}",
+			"ELSE",
+			"\t${3:! false block}",
+			"ENDIF"
+		],
+		"description": "IF ELSE conditional block"
+	},
+	"SELECT CASE Statement": {
+		"prefix": "select",
+		"body": [
+			"SELECT ${1:variable}",
+			"CASE ${2:value1}",
+			"\t${3:! case 1}",
+			"CASE ${4:value2}",
+			"\t${5:! case 2}",
+			"DEFAULT",
+			"\t${6:! default case}",
+			"ENDSELECT"
+		],
+		"description": "SELECT CASE conditional block"
+	},
+	"PROCEDURE": {
+		"prefix": "procedure",
+		"body": [
+			"PROCEDURE ${1:name}(${2:parameters})",
+			"\t$0",
+			"RETURN"
+		],
+		"description": "PROCEDURE definition"
+	},
+	"FUNCTION": {
+		"prefix": "function",
+		"body": [
+			"FUNCTION ${1:name}(${2:parameters})",
+			"\t$0",
+			"\tRETURN ${3:result}",
+			"ENDFUNC"
+		],
+		"description": "FUNCTION definition"
+	},
+	"DIM Array": {
+		"prefix": "dim",
+		"body": [
+			"DIM ${1:array_name}(${2:size})"
+		],
+		"description": "Declare array"
+	},
+	"DIM 2D Array": {
+		"prefix": "dim2d",
+		"body": [
+			"DIM ${1:array_name}(${2:rows},${3:cols})"
+		],
+		"description": "Declare 2D array"
+	},
+	"PRINT Statement": {
+		"prefix": "print",
+		"body": [
+			"PRINT ${1:text}"
+		],
+		"description": "Print statement"
+	},
+	"INPUT Statement": {
+		"prefix": "input",
+		"body": [
+			"INPUT ${1:prompt}, ${2:variable}"
+		],
+		"description": "Input statement"
+	},
+	"PSET Graphics": {
+		"prefix": "pset",
+		"body": [
+			"PSET ${1:x}, ${2:y}, ${3:color}"
+		],
+		"description": "Set pixel"
+	},
+	"LINE Graphics": {
+		"prefix": "line",
+		"body": [
+			"LINE ${1:x1}, ${2:y1}, ${3:x2}, ${4:y2}"
+		],
+		"description": "Draw line"
+	},
+	"BOX Graphics": {
+		"prefix": "box",
+		"body": [
+			"BOX ${1:x1}, ${2:y1}, ${3:x2}, ${4:y2}"
+		],
+		"description": "Draw box"
+	},
+	"CIRCLE Graphics": {
+		"prefix": "circle",
+		"body": [
+			"CIRCLE ${1:x}, ${2:y}, ${3:radius}"
+		],
+		"description": "Draw circle"
+	},
+	"SETCOLOR": {
+		"prefix": "setcolor",
+		"body": [
+			"SETCOLOR ${1:color_index}, ${2:red}, ${3:green}, ${4:blue}"
+		],
+		"description": "Set color palette"
+	},
+	"XBIOS Call": {
+		"prefix": "xbios",
+		"body": [
+			"${1:result} = XBIOS(${2:function_number}${3:, parameters})"
+		],
+		"description": "XBIOS system call"
+	},
+	"PEEK Memory": {
+		"prefix": "peek",
+		"body": [
+			"${1:value} = PEEK(${2:address})"
+		],
+		"description": "Read byte from memory"
+	},
+	"POKE Memory": {
+		"prefix": "poke",
+		"body": [
+			"POKE ${1:address}, ${2:value}"
+		],
+		"description": "Write byte to memory"
+	},
+	"DPEEK Memory": {
+		"prefix": "dpeek",
+		"body": [
+			"${1:value} = DPEEK(${2:address})"
+		],
+		"description": "Read word from memory"
+	},
+	"DPOKE Memory": {
+		"prefix": "dpoke",
+		"body": [
+			"DPOKE ${1:address}, ${2:value}"
+		],
+		"description": "Write word to memory"
+	},
+	"LPEEK Memory": {
+		"prefix": "lpeek",
+		"body": [
+			"${1:value} = LPEEK(${2:address})"
+		],
+		"description": "Read long word from memory"
+	},
+	"LPOKE Memory": {
+		"prefix": "lpoke",
+		"body": [
+			"LPOKE ${1:address}, ${2:value}"
+		],
+		"description": "Write long word to memory"
+	},
+	"GOSUB": {
+		"prefix": "gosub",
+		"body": [
+			"GOSUB ${1:label}"
+		],
+		"description": "Call subroutine"
+	},
+	"Label": {
+		"prefix": "label",
+		"body": [
+			"${1:label_name}:",
+			"$0"
+		],
+		"description": "Create label"
+	},
+	"DATA Statement": {
+		"prefix": "data",
+		"body": [
+			"DATA ${1:value1}, ${2:value2}, ${3:value3}"
+		],
+		"description": "DATA statement"
+	},
+	"READ Statement": {
+		"prefix": "read",
+		"body": [
+			"READ ${1:variable}"
+		],
+		"description": "READ from DATA"
+	},
+	"RESTORE Statement": {
+		"prefix": "restore",
+		"body": [
+			"RESTORE ${1:label}"
+		],
+		"description": "RESTORE DATA pointer"
+	},
+	"Comment Block": {
+		"prefix": "comment",
+		"body": [
+			"! ${1:Comment description}",
+			"! ${2:Additional details}"
+		],
+		"description": "Comment block"
+	},
+	"Variable Declaration Comment": {
+		"prefix": "varcomment",
+		"body": [
+			"! Variables:",
+			"! ${1:var_name}${2:$} - ${3:description}"
+		],
+		"description": "Variable declaration comment"
+	},
+	"File Operations": {
+		"prefix": "fileopen",
+		"body": [
+			"OPEN \"${1:filename}\", #${2:1}, \"${3:R}\"",
+			"${4:! file operations}",
+			"CLOSE #${2:1}"
+		],
+		"description": "File open/close operations"
+	},
+	"Mouse Input": {
+		"prefix": "mouse",
+		"body": [
+			"${1:x} = MOUSEX",
+			"${2:y} = MOUSEY",
+			"${3:button} = MOUSEK"
+		],
+		"description": "Mouse position and button"
+	},
+	"Sound Generation": {
+		"prefix": "sound",
+		"body": [
+			"SOUND ${1:channel}, ${2:frequency}, ${3:duration}"
+		],
+		"description": "Generate sound"
+	},
+	"Screen Mode": {
+		"prefix": "screen",
+		"body": [
+			"SCREEN ${1:mode}",
+			"! Mode: 0=320x200x16, 1=640x200x4, 2=640x400x2"
+		],
+		"description": "Set screen mode"
+	},
+	"Sprite Definition": {
+		"prefix": "sprite",
+		"body": [
+			"DEFSPRITE ${1:number}, ${2:data_address}",
+			"SPRITE ${1:number}, ${3:x}, ${4:y}, ${5:form}"
+		],
+		"description": "Define and display sprite"
+	},
+	"Timer Setup": {
+		"prefix": "timer",
+		"body": [
+			"EVERY ${1:interval} GOSUB ${2:routine}",
+			"! Timer interrupt every ${1:interval}/50 seconds"
+		],
+		"description": "Timer interrupt setup"
+	},
+	"Error Handling": {
+		"prefix": "error",
+		"body": [
+			"ON ERROR GOSUB ${1:error_handler}",
+			"${2:! main code}",
+			"ON ERROR",
+			"END",
+			"${1:error_handler}:",
+			"! Error code: " + STR$(ERR)",
+			"RESUME ${3:next_line}"
+		],
+		"description": "Error handling block"
+	},
+	"String Manipulation": {
+		"prefix": "string",
+		"body": [
+			"${1:result}$ = LEFT$(${2:string}$, ${3:length})",
+			"${4:result}$ = RIGHT$(${2:string}$, ${5:length})",
+			"${6:result}$ = MID$(${2:string}$, ${7:start}, ${8:length})"
+		],
+		"description": "String manipulation functions"
+	},
+	"Matrix Operations": {
+		"prefix": "matrix",
+		"body": [
+			"DIM ${1:matrix}(${2:rows}, ${3:cols})",
+			"MAT ${1:matrix} = ${4:operation}",
+			"! Available operations: ADD, SUB, MUL, INV, DET, etc."
+		],
+		"description": "Matrix operations"
+	},
+	"BIOS Call": {
+		"prefix": "bios",
+		"body": [
+			"${1:result} = BIOS(${2:function_number}, ${3:parameters})"
+		],
+		"description": "BIOS system call"
+	},
+	"XBIOS Call": {
+		"prefix": "xbios",
+		"body": [
+			"${1:result} = XBIOS(${2:function_number}, ${3:parameters})"
+		],
+		"description": "XBIOS system call"
+	},
+	"GEMDOS Call": {
+		"prefix": "gemdos",
+		"body": [
+			"${1:result} = GEMDOS(${2:function_number}, ${3:parameters})"
+		],
+		"description": "GEMDOS system call"
+	},
+	"Sound Generation": {
+		"prefix": "soundgen",
+		"body": [
+			"SOUND ${1:channel}, ${2:frequency}, ${3:duration}",
+			"WAVE ${4:channel}, ${5:waveform}, ${6:frequency}, ${7:amplitude}"
+		],
+		"description": "Sound generation commands"
+	},
+	"Mathematical Functions": {
+		"prefix": "math",
+		"body": [
+			"${1:result} = ${2|SIN,COS,TAN,ASIN,ACOS,ATN,SQR,EXP,LOG,ABS,SGN,INT,FIX,FRAC,ROUND,TRUNC,ODD,EVEN,PRED,SUCC,FACT|}(${3:value})"
+		],
+		"description": "Mathematical functions"
+	},
+	"String Functions": {
+		"prefix": "stringfunc",
+		"body": [
+			"${1:result}$ = ${2|LEFT$,RIGHT$,MID$,UPPER$,LOWER$,LTRIM$,RTRIM$,TRIM$,STR$,CHR$,SPACE$,STRING$|}(${3:parameters})",
+			"${4:length} = LEN(${5:string}$)",
+			"${6:position} = INSTR(${7:string}$, ${8:search}$)"
+		],
+		"description": "String functions"
+	}
+}

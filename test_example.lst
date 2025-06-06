@@ -1,0 +1,312 @@
+' ================================================================
+! GFA BASIC 3.6 Enhanced Syntax Highlighting Test File
+! Purpose: Demonstrate comprehensive syntax highlighting features
+! ================================================================
+
+! Variable type demonstrations
+DIM screen_buffer|(32000)    ! 8-bit integer array for screen buffer
+DIM palette&(16)             ! 16-bit integer array for color palette
+DIM counters|(8)             ! 8-bit integer array for counters
+DIM flags!(10)               ! Boolean array for flags
+DIM messages$(20)            ! String array for messages
+DIM coordinates(100)         ! Float array for coordinates
+
+! System memory addresses (hexadecimal)
+screen_base% = &HFFFF8200    ! Screen base address
+palette_reg% = &HFFFF8240    ! Palette register base
+video_mode& = &HFFFF8260     ! Video mode register
+
+! Binary constants for bit manipulation
+mask_bits| = &X11110000      ! Binary mask
+flag_bits| = &X00001111      ! Binary flags
+
+! String and numeric variables
+title$ = "GFA BASIC 3.6 Demo"
+version$ = "Enhanced v2.0"
+max_objects& = 100
+animation_speed! = TRUE
+pi = 3.14159265
+
+! ================================================================
+! MAIN PROGRAM
+! ================================================================
+
+! Initialize system
+CALL initialize_system%
+CALL setup_graphics%
+
+! Main program loop
+REPEAT
+  @handle_input
+  GOSUB update_animation
+  GOSUB draw_graphics
+  VSYNC                      ! Wait for vertical sync
+UNTIL quit!
+
+! Cleanup and exit
+CALL cleanup_system%
+END
+
+! ================================================================
+! PROCEDURES AND FUNCTIONS
+! ================================================================
+
+! Initialize system procedure
+PROCEDURE initialize_system
+  ! Set video mode
+  old_rez& = XBIOS(4)        ! Get current resolution
+  ~XBIOS(5,L:-1,L:-1,W:1)        ! Set medium resolution
+  
+  ! Initialize variables
+  quit! = FALSE
+  frame_count& = 0
+  
+  ! Setup color palette
+  FOR i| = 0 TO 15
+    palette&(i|) = RAND(4096) ! Random color values
+    SETCOLOR i|, palette&(i|)
+  NEXT i|
+  
+  PRINT "System initialized successfully!"
+RETURN
+
+! Graphics setup function
+FUNCTION setup_graphics
+  LOCAL result!
+  
+  ! Clear screen
+  CLS
+  
+  ' Set drawing parameters
+  DEFFILL 1, 2, 8           ! Fill style, color, pattern
+  DEFLINE 1, 1, &HAAAA      ! Line style, color, pattern
+  DEFMARK 1, 2, 10          ! Marker style, color, size
+  
+  ' Draw title
+  LOCATE 10, 2
+  PRINT title$; " - "; version$
+  
+  result! = TRUE
+  RETURN result!
+ENDFUNC
+
+! Input handling subroutine
+handle_input:
+  key$ = INKEY$
+  
+  SELECT key$
+  CASE CHR$(27)              ! ESC key
+    quit! = TRUE
+  CASE "s", "S"              ! Save screenshot
+    GOSUB save_screen
+  CASE "p", "P"              ! Pause animation
+    animation_speed! = NOT animation_speed!
+  CASE " "                   ! Space - step frame
+    IF NOT animation_speed!
+      GOSUB update_animation
+    ENDIF
+  DEFAULT
+    ' Do nothing for other keys
+  ENDSELECT
+RETURN
+
+! Animation update subroutine
+update_animation:
+  IF animation_speed!
+    INC frame_count&
+    
+    ' Update object positions
+    FOR i& = 0 TO max_objects& - 1
+      coordinates(i& * 2) = 160 + SIN(frame_count& + i&) * 100
+      coordinates(i& * 2 + 1) = 100 + COS(frame_count& + i&) * 50
+    NEXT i&
+  ENDIF
+RETURN
+
+! Graphics drawing subroutine
+draw_graphics:
+  ! Clear previous frame
+  PBOX 0, 50, 319, 199      ! Clear drawing area
+  
+  ! Draw animated objects
+  FOR i& = 0 TO max_objects& - 1
+    x& = coordinates(i& * 2)
+    y& = coordinates(i& * 2 + 1)
+    color| = i& MOD 16
+    
+    ! Draw different shapes based on object index
+    SELECT i& MOD 4
+    CASE 0
+      PSET x&, y&, color|    ! Draw pixel
+    CASE 1
+      CIRCLE x&, y&, 5      ! Draw circle
+    CASE 2
+      BOX x& - 3, y& - 3, x& + 3, y& + 3  ! Draw box
+    CASE 3
+      LINE x& - 5, y&, x& + 5, y&         ! Draw line
+    ENDSELECT
+  NEXT i&
+  
+  ' Draw status information
+  LOCATE 1,24
+  PRINT "Frame: "; frame_count&; " Objects: "; max_objects&
+  PRINT "Speed: "; 
+  IF animation_speed!
+    PRINT "ON "
+  ELSE
+    PRINT "OFF"
+  ENDIF
+RETURN
+
+! Screen save subroutine
+save_screen:
+  filename$ = "SCREEN" + STR$(frame_count&) + ".PI1"
+  
+  ' Save screen to file (simplified)
+  OPEN "O", #1, filename$
+  FOR addr% = screen_base% TO screen_base% + 32000
+    PUT #1, PEEK(addr%)
+  NEXT addr%
+  CLOSE #1
+  
+  PRINT "Screen saved as: "; filename$
+RETURN
+
+! Cleanup procedure
+PROCEDURE cleanup_system
+  ! Restore original resolution
+  ~XBIOS(5,L:-1,L:-1,W:-1)
+  
+  ! Clear screen
+  CLS
+  
+  ! Display exit message
+  PRINT "Thanks for using GFA BASIC 3.6!"
+  PRINT "Extension by Hylst - Enhanced Syntax Highlighting"
+  
+  ! Wait for keypress
+  PRINT "Press any key to exit..."
+  REPEAT
+  UNTIL INKEY$ <> ""
+RETURN
+
+! ================================================================
+! MATHEMATICAL FUNCTIONS
+! ================================================================
+
+! Fast sine calculation using lookup table
+FUNCTION fast_sin(angle)
+  LOCAL result
+  
+  ' Normalize angle to 0-359 degrees
+  WHILE angle >= 360
+    angle = angle - 360
+  WEND
+  WHILE angle < 0
+    angle = angle + 360
+  WEND
+  
+  ' Use built-in SIN function (in radians)
+  result = SIN(angle * pi / 180)
+  
+  RETURN result
+ENDFUNC
+
+! Bit manipulation demonstration
+FUNCTION manipulate_bits(value&)
+  LOCAL result&
+  
+  ' Demonstrate various bit operations
+  result& = value&
+  result& = SHL(result&, 1)   ! Shift left
+  result& = result& OR mask_bits|
+  result& = result& XOR flag_bits|
+  result& = SHR(result&, 1)   ! Shift right
+  
+  RETURN result&
+ENDFUNC
+
+! String processing function
+FUNCTION process_string$(input$)
+  LOCAL output$, i&, char|
+  
+  output$ = ""
+  
+  FOR i& = 1 TO LEN(input$)
+    char| = ASC(MID$(input$, i&, 1))
+    
+    ' Convert to uppercase if lowercase
+    IF char| >= 97 AND char| <= 122
+      char| = char| - 32
+    ENDIF
+    
+    output$ = output$ + CHR$(char|)
+  NEXT i&
+  
+  RETURN output$
+ENDFUNC
+
+! ================================================================
+! DATA SECTION
+! ================================================================
+
+! Sample data for demonstration
+data_start:
+DATA "GFA BASIC", "Atari ST", "Retro Programming"
+DATA 1985, 1986, 1987, 1988, 1989
+DATA 3.14159, 2.71828, 1.41421, 1.73205
+DATA TRUE, FALSE, TRUE, TRUE, FALSE
+
+! ================================================================
+! MEMORY AND SYSTEM OPERATIONS
+! ================================================================
+
+! Direct memory access demonstration
+PROCEDURE memory_demo
+  LOCAL test_addr%, test_value&
+  
+  ' Allocate memory
+  test_addr% = MALLOC(1000)
+  
+  IF test_addr% <> 0
+    ' Write test pattern to memory
+    FOR i& = 0 TO 999
+      POKE test_addr% + i&, i& MOD 256
+    NEXT i&
+    
+    ' Read back and verify
+    FOR i& = 0 TO 999
+      test_value& = PEEK(test_addr% + i&)
+      IF test_value& <> (i& MOD 256)
+        PRINT "Memory test failed at offset "; i&
+        EXIT FOR
+      ENDIF
+    NEXT i&
+    
+    ' Free allocated memory
+    ~MFREE(test_addr%)
+    PRINT "Memory test completed successfully"
+  ELSE
+    PRINT "Memory allocation failed"
+  ENDIF
+RETURN
+
+! ================================================================
+! END OF PROGRAM
+! ================================================================
+
+! This file demonstrates:
+! - All variable types with proper suffixes
+! - Comprehensive instruction usage
+! - Control structures (FOR, WHILE, IF, SELECT, REPEAT)
+! - Procedures and functions
+! - Graphics operations
+! - System calls (XBIOS)
+! - Memory operations (PEEK, POKE, MALLOC, MFREE)
+! - String manipulation
+! - Mathematical operations
+! - Bit manipulation
+! - Data statements
+! - Comments using ! syntax
+! - Number formats (decimal, hexadecimal, binary)
+! - Proper indentation and code structure

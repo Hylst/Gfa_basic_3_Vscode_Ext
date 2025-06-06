@@ -1,0 +1,84 @@
+{
+	"name": "gfa-basic-syntax-enhanced",
+	"displayName": "GFA BASIC 3.6 Enhanced Syntax Highlighting",
+	"description": "Complete GFA-BASIC 3.6 language support for Visual Studio Code with enhanced syntax highlighting, comprehensive snippets, and IntelliSense for Atari ST development",
+	"version": "2.0.0",
+	"publisher": "Hylst",
+	"license": "MIT",
+	"icon": "images/GFA_BASIC_3_FOR_ATARI_DEV_VSCODE_EXT_ICO.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Hylst/Gfa_basic_3_Vscode_Ext"
+	},
+	"homepage": "https://github.com/Hylst/Gfa_basic_3_Vscode_Ext",
+	"bugs": {
+		"url": "https://github.com/Hylst/Gfa_basic_3_Vscode_Ext/issues"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"keywords": [
+		"gfa-basic",
+		"gfa",
+		"basic",
+		"atari",
+		"atari-st",
+		"syntax",
+		"highlighting",
+		"language",
+		"retro",
+		"vintage",
+		"programming",
+		"bios",
+		"xbios",
+		"gemdos",
+		"aes",
+		"vdi",
+		"graphics",
+		"sound",
+		"matrix",
+		"snippets",
+		"intellisense"
+	],
+	"engines": {
+		"vscode": "^1.75.0"
+	},
+	"contributes": {
+		"languages": [
+			{
+				"id": "gfabasic",
+				"aliases": [
+					"GFA BASIC",
+					"gfabasic",
+					"GFA BASIC 3.6"
+				],
+"extensions": [".lst"],				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "gfabasic",
+				"scopeName": "source.gfabasic",
+				"path": "./syntaxes/gfabasic.tmLanguage.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "gfabasic",
+				"path": "./snippets/gfabasic.json"
+			}
+		]
+	},
+	"activationEvents": [
+		"onLanguage:gfabasic"
+	],
+	"main": "./extension.js",
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "echo 'No compilation needed'",
+		"watch": "echo 'No watch needed'"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.75.0"
+	}
+}
